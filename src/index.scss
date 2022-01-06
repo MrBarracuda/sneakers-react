@@ -1,0 +1,56 @@
+@import-normalize;
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e7f6ff;
+}
+
+*, *:before, *:after {
+  font-family: 'Inter', system-ui;
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul, h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+
+button {
+  width: 100%;
+  height: 55px;
+  background: #9dd558;
+  border-radius: 18px;
+  border: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.1s ease-in-out;
+
+  &:disabled {
+    background-color: #bebebe !important;
+    cursor: default;
+  }
+
+  &:hover {
+    background: lighten(#9dd558, 5%);
+  }
+
+  &:active {
+    background: darken(#9dd558, 5%);
+  }
+}
+

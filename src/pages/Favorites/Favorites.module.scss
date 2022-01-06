@@ -1,0 +1,18 @@
+
+.heading {
+  margin-bottom: 40px;
+}
+.favoriteItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2em;
+}
+@media (max-width: 37em) {
+  .heading {
+    margin-top: 20px;
+    text-align: center;
+  }
+  .favoriteItems {
+    justify-content: center;
+  }
+}

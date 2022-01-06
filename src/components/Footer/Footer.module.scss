@@ -1,0 +1,36 @@
+footer {
+  padding-top: 30px;
+  //padding-bottom: 10px;
+  display: flex;
+  border-top: 1px solid #eaeaea;
+  align-items: center;
+  justify-content: space-between;
+
+  div:first-child {
+
+  }
+
+  div:last-child {
+
+  }
+
+  .list {
+    display: flex;
+  }
+
+  .listItem:not(:first-child) {
+    margin-left: 20px;
+  }
+
+
+}
+
+@media (max-width: 37em) {
+  footer {
+    flex-direction: column;
+    margin-top: 20px;
+    div:first-child {
+      margin-bottom: 25px;
+    }
+  }
+}

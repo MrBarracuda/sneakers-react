@@ -1,0 +1,11 @@
+
+.svg {
+  width: 24px;
+  aspect-ratio: 1;
+
+  &:hover {
+    fill: #9f9f9f;
+    transform: translateY(-15%);
+    transition: 0.25s ease-in-out;
+  }
+}

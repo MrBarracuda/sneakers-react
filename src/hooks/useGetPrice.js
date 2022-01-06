@@ -1,0 +1,1 @@
+export const useGetPrice = array => array.reduce((acc, item) => acc + item.price, 0)
