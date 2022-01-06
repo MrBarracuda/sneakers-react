@@ -1,6 +1,7 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+<<<<<<< HEAD
     <inspection_tool class="AnonymousFunctionJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AssignmentResultUsedJS" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="AssignmentToForLoopParameterJS" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -132,5 +133,8 @@
       <option name="myIgnoreVendorSpecificProperties" value="false" />
     </inspection_tool>
     <inspection_tool class="XHTMLIncompatabilitiesJS" enabled="true" level="WARNING" enabled_by_default="true" />
+=======
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+>>>>>>> parent of 348788d (Delete .idea directory)
   </profile>
 </component>
