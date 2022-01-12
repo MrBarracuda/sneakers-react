@@ -24,12 +24,12 @@ export const handleFetchError = error => {
 }
 
 function App() {
-    const [items, setItems] = useState([]);
-    const [cartItems, setCartItems] = useState([]);
-    const [favorites, setFavorites] = useState([]);
-    const [searchValue, setSearchValue] = useState('');
-    const [cartOpened, setCartOpened] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [items, setItems] = useState([])
+    const [cartItems, setCartItems] = useState([])
+    const [favorites, setFavorites] = useState([])
+    const [searchValue, setSearchValue] = useState('')
+    const [cartOpened, setCartOpened] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
@@ -38,50 +38,50 @@ function App() {
                     api.get('/cart'),
                     api.get('/favorites'),
                     api.get('/items'),
-                ]);
+                ])
 
-                setIsLoading(false);
-                setCartItems(cartResponse.data);
-                setFavorites(favoritesResponse.data);
-                setItems(itemsResponse.data);
+                setIsLoading(false)
+                setCartItems(cartResponse.data)
+                setFavorites(favoritesResponse.data)
+                setItems(itemsResponse.data)
             } catch (error) {
                 handleFetchError(error)
             }
         }
 
-        fetchData();
-    }, []);
+        fetchData()
+    }, [])
 
     const onAddToCart = async (obj) => {
         try {
-            const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id));
+            const findItem = cartItems.find((item) => Number(item.parentId) === Number(obj.id))
             if (findItem) {
-                setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)));
-                await api.delete(`/cart/${findItem.id}`);
+                setCartItems((prev) => prev.filter((item) => Number(item.parentId) !== Number(obj.id)))
+                await api.delete(`/cart/${findItem.id}`)
             } else {
-                setCartItems((prev) => [...prev, obj]);
-                const {data} = await api.post('/cart', obj);
+                setCartItems((prev) => [...prev, obj])
+                const {data} = await api.post('/cart', obj)
                 setCartItems((prev) =>
                     prev.map((item) => {
                         if (item.parentId === data.parentId) {
                             return {
                                 ...item,
                                 id: data.id,
-                            };
+                            }
                         }
-                        return item;
+                        return item
                     }),
-                );
+                )
             }
         } catch (error) {
             handleFetchError(error)
         }
-    };
+    }
 
     const onRemoveItem = (id) => {
         try {
-            api.delete(`/cart/${id}`);
-            setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)));
+            api.delete(`/cart/${id}`)
+            setCartItems((prev) => prev.filter((item) => Number(item.id) !== Number(id)))
         } catch (error) {
             handleFetchError(error)
         }
@@ -89,25 +89,25 @@ function App() {
 
     const onAddToFavorite = async (obj) => {
         try {
+            // const {data} = await api.get('/favorites', obj)
+            // setFavorites(prev => [...prev, data])
             if (favorites.find((favObj) => Number(favObj.id) === Number(obj.id))) {
-                api.delete(`/favorites/${obj.id}`);
-                setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)));
+                api.delete(`/favorites/${obj.id}`)
+                setFavorites((prev) => prev.filter((item) => Number(item.id) !== Number(obj.id)))
             } else {
-                const {data} = await api.post('/favorites', obj,);
-                setFavorites((prev) => [...prev, data]);
+                const {data} = await api.post('/favorites', obj)
+                setFavorites((prev) => [...prev, data])
             }
         } catch (error) {
             handleFetchError(error)
         }
     };
 
-    const onChangeSearchInput = (event) => {
-        setSearchValue(event.target.value);
-    };
+    const onChangeSearchInput = e => setSearchValue(e.target.value)
 
-    const isItemAdded = (id) => {
-        return cartItems.some((obj) => Number(obj.parentId) === Number(id));
-    };
+
+    const isItemAdded = id => cartItems.some(obj => Number(obj.parentId) === Number(id))
+
 
     return (
         <AppContext.Provider

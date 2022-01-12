@@ -12,6 +12,7 @@ export const Home = ({
                          isLoading
                      }) => {
 
+
     const renderItems = () => {
         const filteredItems = items.filter((item) =>
             item.title.toLowerCase().includes(searchValue.toLowerCase()),
@@ -19,8 +20,8 @@ export const Home = ({
         return (isLoading ? [...Array(8)] : filteredItems).map((item, index) => (
             <Card
                 key={index}
-                onFavorite={(obj) => onAddToFavorite(obj)}
-                onPlus={(obj) => onAddToCart(obj)}
+                onFavorite={obj => onAddToFavorite(obj)}
+                onPlus={obj => onAddToCart(obj)}
                 loading={isLoading}
                 {...item}
             />

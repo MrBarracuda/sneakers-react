@@ -1,8 +1,6 @@
-import React from 'react';
-import ContentLoader from 'react-content-loader';
-
+import {useState, useContext, useEffect} from "react";
 import {AppContext} from "../../context";
-
+import ContentLoader from 'react-content-loader';
 import styles from './Card.module.scss';
 
 export const Card = ({
@@ -15,18 +13,29 @@ export const Card = ({
                          favorited = false,
                          loading = false,
                      }) => {
-    const {isItemAdded} = React.useContext(AppContext);
-    const [isFavorite, setIsFavorite] = React.useState(favorited);
-    const obj = {id, parentId: id, title, imageUrl, price};
+    const {isItemAdded} = useContext(AppContext)
+    const [isFavorite, setIsFavorite] = useState(favorited)
+    const obj = {id, parentId: id, title, imageUrl, price}
+    const src = {
+        fav: {
+            add: 'img/liked.svg',
+            remove: 'img/unliked.svg'
+        },
+        cart: {
+            add: 'img/btn-checked.svg',
+            remove: 'img/btn-plus.svg'
+        }
+    }
 
-    const onClickPlus = () => {
-        onPlus(obj);
-    };
+    const onClickPlus = () => onPlus(obj)
 
     const onClickFavorite = () => {
-        onFavorite(obj);
-        setIsFavorite(!isFavorite);
-    };
+        onFavorite(obj)
+        setIsFavorite(!isFavorite)
+    }
+    // useEffect(() => {
+    //     setIsFavorite(isFavorite)
+    // },[isFavorite])
 
     return (
         <div className={styles.card}>
@@ -48,7 +57,7 @@ export const Card = ({
                 <>
                     {onFavorite && (
                         <div className={styles.favorite} onClick={onClickFavorite}>
-                            <img src={isFavorite ? 'img/liked.svg' : 'img/unliked.svg'} alt="Unliked"/>
+                            <img src={isFavorite ? src.fav.add : src.fav.remove} alt="add item to favorites"/>
                         </div>
                     )}
                     <img width="100%" height={135} src={imageUrl} alt="Sneakers"/>
@@ -62,8 +71,8 @@ export const Card = ({
                             <img
                                 className={styles.plus}
                                 onClick={onClickPlus}
-                                src={isItemAdded(id) ? 'img/btn-checked.svg' : 'img/btn-plus.svg'}
-                                alt="Plus"
+                                src={isItemAdded(id) ? src.cart.add : src.cart.remove}
+                                alt="add item to cart"
                             />
                         )}
                     </div>
